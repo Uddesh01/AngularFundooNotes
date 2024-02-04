@@ -1,0 +1,49 @@
+<div class="wrapper">
+    <div class="leftside">
+        <div class="registerHeader">
+            <h2 style="font-size: x-large;">Fundoo</h2>
+            <h5 style="font-size: x-large;">Create your Fundoo Account</h5>
+        </div>
+        <div class="input">
+            <div>
+                <mat-form-field appearance="outline" style="width: 115%;">
+                    <mat-label>UserName</mat-label>
+                    <input matInput placeholder="userName">
+                </mat-form-field>
+                <p class="xyz">You can use letters,numbers & periods</p>
+            </div>
+            <div class="email">
+                <mat-form-field appearance="outline" style="width: 120%;">
+                    <mat-label>Email Id</mat-label>
+                    <input matInput type="email" placeholder="Email Id">
+                </mat-form-field>
+            </div>
+            <div class="userContact">
+                <mat-form-field appearance="outline" style="width: 120%;">
+                    <mat-label>Contact</mat-label>
+                    <input matInput type="text" placeholder="Contact">
+                </mat-form-field>
+            </div>
+            <div class="password">
+                <mat-form-field appearance="outline">
+                    <mat-label>password</mat-label>
+                    <input matInput type="password" placeholder="Password">
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding-left: 10px;">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput type="password" placeholder="Confirm">
+                </mat-form-field>
+            </div>
+            <p>Use 8 or more chrachter with mix of latters,numbers & symbols</p>
+
+            <div class="registerBtn">
+                <button mat-button color="primary" style="font-size: 17px;"(click)="handleNavigation()">Sign in instead</button>
+                <button mat-flat-button color="primary">Register</button>
+            </div>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="../../../assets/img.PNG" alt="img" width="250" height="270" style="margin-left:20%;">
+        <span>One account.All of Fundoo working for you.</span>
+    </div>
+</div>
