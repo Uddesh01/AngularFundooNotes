@@ -28,8 +28,12 @@ export class RegisterComponent implements OnInit {
   handleNavigation() {
     this.router.navigate(["/login"])
   }
+
   handleRegisterClick(){
     this.submitted=true,
     console.log(this.registerFrom.invalid)
+  }
+  handleSignInInstedClick(){
+    this.router.navigate(["/login"]);
   }
 }

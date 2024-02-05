@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { MatCardModule } from '@angular/material/card';
 import { DisplaynoteComponent } from './components/displaynote/displaynote.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DisplaynoteComponent } from './components/displaynote/displaynote.compo
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
