@@ -13,13 +13,16 @@ import { DemoComponent } from './components/demo/demo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { MatCardModule } from '@angular/material/card';
+import { DisplaynoteComponent } from './components/displaynote/displaynote.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     DemoComponent,
-    DashBoardComponent
+    DashBoardComponent,
+    DisplaynoteComponent
   ],
   imports: [
     BrowserModule,

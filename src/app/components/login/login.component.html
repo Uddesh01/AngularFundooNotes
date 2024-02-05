@@ -9,13 +9,16 @@
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Email or Phone</mat-label>
-                    <input matInput type="email" placeholder="Email or Phone">
-                  </mat-form-field>
+                    <input formControlName="email" matInput type="email" placeholder="Email or Phone">
+                    <mat-error *ngIf="submitted && f['email']?.hasError('email')">Email required</mat-error>
+                    <mat-error *ngIf="submitted && f['email']?.hasError('required')">Email required</mat-error>
+                </mat-form-field>           
             </div>
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password" placeholder="Password" formControlName>
+                    <input formControlName="password" matInput type="password" placeholder="Password">
+                    <mat-error *ngIf="submitted && f['password']?.hasError('required')">Password required</mat-error>
                   </mat-form-field>
             </div>
             <div class="forgetPassword">

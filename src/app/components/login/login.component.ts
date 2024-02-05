@@ -18,13 +18,13 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
-    }
-    )
+    })
   }
   get f() { return this.loginForm.controls; }
 
   handleLoginClick(){
-    
+    this.submitted=true,
+    console.log(this.loginForm.invalid)
   }
 
   handleRegisterClick(){
