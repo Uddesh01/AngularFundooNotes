@@ -11,4 +11,7 @@ export class UserService {
   {
    return this.httpService.loginSiginUpCall("User/Login",data)
   }
+  registerUserCall(data:object){
+    return this.httpService.registerUserCall("User/Register",data)
+  }
 }

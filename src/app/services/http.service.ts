@@ -7,12 +7,12 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-  baseUrl:string="https://localhost:7137/api/"
-  constructor(public http: HttpClient) {
-
-   }
-  loginSiginUpCall(endpoint: string,data:object): Observable<any> {
-    return this.http.post(this.baseUrl+endpoint,data)
+  baseUrl: string = "https://localhost:7137/api/"
+  constructor(public http: HttpClient) { }
+  loginSiginUpCall(endpoint: string, data: object): Observable<any> {
+    return this.http.post(this.baseUrl + endpoint, data)
   }
-
+  registerUserCall(endpoint: string, data: object): Observable<any> {
+    return this.http.post(this.baseUrl + endpoint, data)
+  }
 }
