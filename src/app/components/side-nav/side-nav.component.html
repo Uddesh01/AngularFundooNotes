@@ -1,0 +1,48 @@
+<mat-drawer-container class="example-container" [hasBackdrop]="false">
+  <mat-drawer #drawer [opened]="true" [mode]="'over'">
+    <div class="drawer-icons">
+      <button class="drawer-btn">
+        <mat-icon class="drawer-icon" svgIcon="Note-icon" aria-hidden="true" aria-label="Note SVG icon"></mat-icon>
+        <span>Notes</span>
+      </button>
+      <button class="drawer-btn">
+        <mat-icon class="drawer-icon" svgIcon="Reminder-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
+        <span>Reminders</span>
+      </button>
+      <button class="drawer-btn">
+        <mat-icon class="drawer-icon" svgIcon="Edit-labels-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
+        <span>Edit labels</span>
+      </button>
+      <button class="drawer-btn">
+        <mat-icon class="drawer-icon" svgIcon="Archive-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
+        <span>Archive</span>
+      </button>
+      <button class="drawer-btn">
+        <mat-icon class="drawer-icon" svgIcon="Trash-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
+        <span>Bin</span>
+      </button>
+    </div>
+
+
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="icons">
+      <button class="btn">
+        <mat-icon class="icon" svgIcon="Note-icon" aria-hidden="true" aria-label="Note SVG icon"></mat-icon>
+      </button>
+      <button class="btn">
+        <mat-icon class="icon" svgIcon="Reminder-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
+      </button>
+      <button class="btn">
+        <mat-icon class="icon" svgIcon="Edit-labels-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
+      </button>
+      <button class="btn">
+        <mat-icon class="icon" svgIcon="Archive-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
+      </button>
+      <button class="btn">
+        <mat-icon class="icon" svgIcon="Trash-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
+      </button>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

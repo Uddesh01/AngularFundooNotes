@@ -31,7 +31,10 @@ export class LoginComponent implements OnInit {
     this.userService.loginCall({
       "userEmail": email,
       "userPassword": password
-    }).subscribe(res => console.log(res), err => console.log(err))
+    }).subscribe(res => {
+      localStorage.setItem("authToken",res.data)
+      this.router.navigate(["/dashboard/notes"])
+    }, err => console.log(err))
   }
 
   handleRegisterClick() {

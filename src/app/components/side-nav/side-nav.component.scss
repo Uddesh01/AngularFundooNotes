@@ -1,0 +1,46 @@
+::ng-deep .app-side-nav-cnt {
+    width: 300%;
+    display: flex;
+    height: calc(100vh - 80px);
+    margin-top: 10px;
+}
+
+mat-drawer {
+   // width: 100%;
+    background-color: white;
+    border: 1px solid black; 
+}
+
+mat-drawer-content {
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+    background-color: white;
+}
+
+.icons {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    border: none; 
+    margin-bottom: 2.3em;
+    padding: 7px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn:focus,
+.btn:active {
+    background-color: #FEEFC3;
+}
+
+.icon {
+    padding: 10px;
+}
+

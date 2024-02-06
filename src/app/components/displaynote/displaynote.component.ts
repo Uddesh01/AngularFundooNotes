@@ -15,7 +15,6 @@ import {
   TRASH_ICON,
   PIN_ICON,
   TICK_ICON
-
 } from 'src/assets/svg-icons';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';

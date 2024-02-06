@@ -8,11 +8,11 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class HttpService {
   baseUrl: string = "https://localhost:7137/api/"
-  constructor(public http: HttpClient) { }
+  constructor(public httpClient: HttpClient) { }
   loginSiginUpCall(endpoint: string, data: object): Observable<any> {
-    return this.http.post(this.baseUrl + endpoint, data)
+    return this.httpClient.post(this.baseUrl + endpoint, data)
   }
   registerUserCall(endpoint: string, data: object): Observable<any> {
-    return this.http.post(this.baseUrl + endpoint, data)
+    return this.httpClient.post(this.baseUrl + endpoint, data)
   }
 }

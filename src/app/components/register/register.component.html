@@ -10,9 +10,8 @@
                     <div>
                         <mat-form-field appearance="outline">
                             <mat-label>UserName</mat-label>
-                            <input formControlName="userName" matInput placeholder="UserName">
-                            <mat-error *ngIf="submitted && f['userName']?.hasError('required')">UserName
-                                required</mat-error>
+                            <input formControlName="userName" matInput>
+                            <mat-error *ngIf="submitted && f['userName']?.hasError('required')">UserName required</mat-error>
                         </mat-form-field>
                         <p class="xyz">You can use letters,numbers & periods</p>
                     </div>
@@ -28,18 +27,15 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Contact</mat-label>
                             <input formControlName="userContact" matInput placeholder="Contact">
-                            <mat-error *ngIf="submitted && f['userContact']?.hasError('required')">Contact
-                                required</mat-error>
+                            <mat-error *ngIf="submitted && f['userContact']?.hasError('required')">Contact required</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="password">
                         <mat-form-field appearance="outline">
                             <mat-label>password</mat-label>
                             <input formControlName="password" matInput type="password" placeholder="Password">
-                            <mat-error *ngIf="submitted && f['password']?.hasError('required')">Password
-                                required</mat-error>
-                            <mat-error *ngIf="submitted && f['password']?.hasError('minlength')">Invalid
-                                password</mat-error>
+                            <mat-error *ngIf="submitted && f['password']?.hasError('required')">Password required</mat-error>
+                            <mat-error *ngIf="submitted && f['password']?.hasError('minlength')">Invalid password</mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style="padding-left: 10px;">
                             <mat-label>Confirm Password</mat-label>
@@ -51,8 +47,7 @@
                     <p>Use 8 or more chrachter with mix of latters,numbers & symbols</p>
 
                     <div class="registerBtn">
-                        <button mat-button color="primary" style="font-size: 17px;"
-                            (click)="handleSignInInstedClick()">Sign in instead</button>
+                        <button mat-button color="primary" style="font-size: 17px;" (click)="handleSignInInstedClick()">Sign in instead</button>
                         <button mat-flat-button color="primary" (click)="handleRegisterClick()">Register</button>
                     </div>
                 </div>

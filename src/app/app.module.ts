@@ -15,6 +15,15 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
 import { MatCardModule } from '@angular/material/card';
 import { DisplaynoteComponent } from './components/displaynote/displaynote.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FundooHeaderComponent } from './components/fundoo-header/fundoo-header.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { NotesContainerComponent } from './components/notes-container/notes-container.component';
+import { TrashContainerComponent } from './components/trash-container/trash-container.component';
+import { ArchiveContainerComponent } from './components/archive-container/archive-container.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import { AddNoteComponent } from './components/add-note/add-note.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +32,13 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     DemoComponent,
     DashBoardComponent,
-    DisplaynoteComponent
+    DisplaynoteComponent,
+    FundooHeaderComponent,
+    SideNavComponent,
+    NotesContainerComponent,
+    TrashContainerComponent,
+    ArchiveContainerComponent,
+    AddNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +49,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSidenavModule,
     MatIconModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
