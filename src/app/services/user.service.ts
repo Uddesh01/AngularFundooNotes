@@ -14,4 +14,5 @@ export class UserService {
   registerUserCall(data:object){
     return this.httpService.registerUserCall("User/Register",data)
   }
+  
 }

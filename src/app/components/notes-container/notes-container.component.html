@@ -1,0 +1,10 @@
+<div class="container">
+<div *ngFor="let note of notesList">
+    <br>
+    <div class =" note">
+        <app-display-note [title]="note.title" [description]="note.description"></app-display-note>
+        </div>
+    <br>
+    <br>
+</div> 
+</div>

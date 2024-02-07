@@ -1,7 +1,7 @@
 <div class="dashboard_header" style="width: 100%;">
     <mat-toolbar>
         <div class="rightside-icon">
-            <button class="btn">
+            <button class="btn" (click)="handleToggleDrawer()">
                 <mat-icon class="icon" svgIcon="Menu-icon" aria-hidden="false" aria-label="Menu SVG icon"></mat-icon>
             </button>
             <img src="../../assets/googlekeepLogo.png" class="keep-img" alt="google keep">
@@ -16,20 +16,16 @@
         </div>
         <div class="leftside-icon">
             <button class="btn refresh-btn">
-                <mat-icon class="icon" svgIcon="Refresh-icon" aria-hidden="true"
-                    aria-label="Refresh SVG icon"></mat-icon>
+                <mat-icon class="icon" svgIcon="Refresh-icon" aria-hidden="true" aria-label="Refresh SVG icon"></mat-icon>
             </button>
             <button class="btn list-view-btn">
-                <mat-icon class="icon" svgIcon="List-view-icon" aria-hidden="true"
-                    aria-label="List view SVG icon"></mat-icon>
+                <mat-icon class="icon" svgIcon="List-view-icon" aria-hidden="true" aria-label="List view SVG icon"></mat-icon>
             </button>
             <button class="btn setting-btn">
-                <mat-icon class="icon" svgIcon="Setting-icon" aria-hidden="true"
-                    aria-label="Setting SVG icon"></mat-icon>
+                <mat-icon class="icon" svgIcon="Setting-icon" aria-hidden="true" aria-label="Setting SVG icon"></mat-icon>
             </button>
             <button class="btn other-menu-btn">
-                <mat-icon class="icon" svgIcon="Other-menu-icon" aria-hidden="true"
-                    aria-label="Other menu SVG icon"></mat-icon>
+                <mat-icon class="icon" svgIcon="Other-menu-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
             </button>
             <button class="btn">
                 <div class="fundoo-note-account">

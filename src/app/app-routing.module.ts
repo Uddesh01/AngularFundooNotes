@@ -8,6 +8,7 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
 import { NotesContainerComponent } from './components/notes-container/notes-container.component';
 import { ArchiveContainerComponent } from './components/archive-container/archive-container.component';
 import { TrashContainerComponent } from './components/trash-container/trash-container.component';
+import { AddNoteComponent } from './components/add-note/add-note.component';
 
 const routes: Routes = [
   {path:"", component:DemoComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
     {path:"archive",component:ArchiveContainerComponent},
     {path:"trash",component:TrashContainerComponent}
    ]},
-  {path:"displaynote",component:DisplaynoteComponent}
+  {path:"displaynote",component:DisplaynoteComponent},
+  {path:"addnote",component:AddNoteComponent}
 ];
 
 @NgModule({

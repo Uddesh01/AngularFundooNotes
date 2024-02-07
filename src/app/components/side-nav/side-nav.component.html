@@ -1,30 +1,40 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="false">
-  <mat-drawer #drawer [opened]="true" [mode]="'over'">
+  <mat-drawer #drawer [opened]="drawerState" [mode]="'over'">
     <div class="drawer-icons">
-      <button class="drawer-btn">
-        <mat-icon class="drawer-icon" svgIcon="Note-icon" aria-hidden="true" aria-label="Note SVG icon"></mat-icon>
+      <div class="icon-lable">
+      <button class="drawer-btn btn1">
+        <mat-icon class="drawer-icon"  svgIcon="Note-icon" aria-hidden="true" aria-label="Note SVG icon"></mat-icon>
         <span>Notes</span>
       </button>
+    </div>
+    <div class="icon-lable">
       <button class="drawer-btn">
         <mat-icon class="drawer-icon" svgIcon="Reminder-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
         <span>Reminders</span>
       </button>
+      </div>
+      <div class="icon-lable">
       <button class="drawer-btn">
         <mat-icon class="drawer-icon" svgIcon="Edit-labels-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
         <span>Edit labels</span>
       </button>
+      </div>
+      <div class="icon-lable">
       <button class="drawer-btn">
         <mat-icon class="drawer-icon" svgIcon="Archive-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
         <span>Archive</span>
       </button>
+      </div>
+      <div class="icon-lable">
       <button class="drawer-btn">
         <mat-icon class="drawer-icon" svgIcon="Trash-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
         <span>Bin</span>
       </button>
+      </div>
     </div>
-
-
   </mat-drawer>
+
+
   <mat-drawer-content>
     <div class="icons">
       <button class="btn">

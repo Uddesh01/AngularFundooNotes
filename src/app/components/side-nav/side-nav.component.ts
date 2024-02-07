@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Subscriber, Subscription } from 'rxjs';
+import { DataServiceService } from 'src/app/services/data-service.service';
 import {
   NOTE_ICON,
   REMINDER_ICON,
@@ -18,8 +20,10 @@ import {
   }
 })
 export class SideNavComponent implements OnInit {
+  drawerState!:boolean;
+  subscription!:Subscription;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private data:DataServiceService) {
     iconRegistry.addSvgIconLiteral("Note-icon", sanitizer.bypassSecurityTrustHtml(NOTE_ICON))
     iconRegistry.addSvgIconLiteral("Reminder-icon", sanitizer.bypassSecurityTrustHtml(REMINDER_ICON))
     iconRegistry.addSvgIconLiteral("Edit-labels-icon", sanitizer.bypassSecurityTrustHtml(EDIT_ICON))
@@ -28,6 +32,9 @@ export class SideNavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   this.subscription = this.data.currDrawerState.subscribe(state=> this.drawerState = state)
   }
-
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe()
+  }
 }

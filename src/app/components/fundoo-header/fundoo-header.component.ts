@@ -8,7 +8,10 @@ import {
   LIST_VIEW_ICON,
   OTHER_MENU_ICON
 } from 'src/assets/svg-icons';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import { DataServiceService } from 'src/app/services/data-service.service';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-fundoo-header',
@@ -19,8 +22,10 @@ import { Component, OnInit } from '@angular/core';
   }
 })
 export class FundooHeaderComponent implements OnInit {
+  drawerState!:boolean;
+  subscription!: Subscription;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private data: DataServiceService) {
     iconRegistry.addSvgIconLiteral("Menu-icon", sanitizer.bypassSecurityTrustHtml(MENU_ICON))
     iconRegistry.addSvgIconLiteral("Search-icon", sanitizer.bypassSecurityTrustHtml(SEARCH_ICON))
     iconRegistry.addSvgIconLiteral("Refresh-icon", sanitizer.bypassSecurityTrustHtml(REFRESH_ICON))
@@ -31,6 +36,16 @@ export class FundooHeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.subscription = this.data.currDrawerState.subscribe(state => this.drawerState = state)
   }
+  
+  handleToggleDrawer(){
+    this.data.toggleDrawerState(!this.drawerState)
+    }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+ 
 
 }
