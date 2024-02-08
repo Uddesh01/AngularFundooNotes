@@ -2,34 +2,38 @@
   <mat-drawer #drawer [opened]="drawerState" [mode]="'over'">
     <div class="drawer-icons">
       <div class="icon-lable">
-      <button class="drawer-btn btn1">
-        <mat-icon class="drawer-icon"  svgIcon="Note-icon" aria-hidden="true" aria-label="Note SVG icon"></mat-icon>
-        <span>Notes</span>
-      </button>
-    </div>
-    <div class="icon-lable">
-      <button class="drawer-btn">
-        <mat-icon class="drawer-icon" svgIcon="Reminder-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
-        <span>Reminders</span>
-      </button>
+        <button class="drawer-btn btn1" (click)="notesNavigate()">
+          <mat-icon class="drawer-icon" svgIcon="Note-icon" aria-hidden="true" aria-label="Note SVG icon"></mat-icon>
+          <span>Notes</span>
+        </button>
       </div>
       <div class="icon-lable">
-      <button class="drawer-btn">
-        <mat-icon class="drawer-icon" svgIcon="Edit-labels-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
-        <span>Edit labels</span>
-      </button>
+        <button class="drawer-btn btn1" (click)="reminderNavigate()">
+          <mat-icon class="drawer-icon" svgIcon="Reminder-icon" aria-hidden="true"
+            aria-label="Other menu SVG icon"></mat-icon>
+          <span>Reminders</span>
+        </button>
       </div>
       <div class="icon-lable">
-      <button class="drawer-btn">
-        <mat-icon class="drawer-icon" svgIcon="Archive-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
-        <span>Archive</span>
-      </button>
+        <button class="drawer-btn btn1" (click)="editNavigate()">
+          <mat-icon class="drawer-icon" svgIcon="Edit-labels-icon" aria-hidden="true"
+            aria-label="Other menu SVG icon"></mat-icon>
+          <span>Edit labels</span>
+        </button>
       </div>
       <div class="icon-lable">
-      <button class="drawer-btn">
-        <mat-icon class="drawer-icon" svgIcon="Trash-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
-        <span>Bin</span>
-      </button>
+        <button class="drawer-btn btn1"  (click)="archiveNavigate()">
+          <mat-icon class="drawer-icon" svgIcon="Archive-icon" aria-hidden="true"
+            aria-label="Other menu SVG icon"></mat-icon>
+          <span>Archive</span>
+        </button>
+      </div>
+      <div class="icon-lable btn1">
+        <button class="drawer-btn" (click)="trashNavigate()">
+          <mat-icon class="drawer-icon" svgIcon="Trash-icon" aria-hidden="true"
+            aria-label="Other menu SVG icon"></mat-icon>
+          <span>Bin</span>
+        </button>
       </div>
     </div>
   </mat-drawer>
@@ -37,19 +41,20 @@
 
   <mat-drawer-content>
     <div class="icons">
-      <button class="btn">
+      <button class="btn" (click)="notesNavigate()">
         <mat-icon class="icon" svgIcon="Note-icon" aria-hidden="true" aria-label="Note SVG icon"></mat-icon>
       </button>
-      <button class="btn">
+      <button class="btn" (click)="reminderNavigate()">
         <mat-icon class="icon" svgIcon="Reminder-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
       </button>
-      <button class="btn">
-        <mat-icon class="icon" svgIcon="Edit-labels-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
+      <button class="btn" (click)="editNavigate()">
+        <mat-icon class="icon" svgIcon="Edit-labels-icon" aria-hidden="true"
+          aria-label="Other menu SVG icon"></mat-icon>
       </button>
-      <button class="btn">
+      <button class="btn" (click)="archiveNavigate()">
         <mat-icon class="icon" svgIcon="Archive-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
       </button>
-      <button class="btn">
+      <button class="btn" (click)="trashNavigate()">
         <mat-icon class="icon" svgIcon="Trash-icon" aria-hidden="true" aria-label="Other menu SVG icon"></mat-icon>
       </button>
     </div>

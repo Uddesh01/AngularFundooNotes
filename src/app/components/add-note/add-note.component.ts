@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NoteService } from 'src/app/services/note.service';
 import {
   IMG_ICON,
   TICK_ICON,
@@ -21,8 +22,13 @@ import {
   styleUrls: ['./add-note.component.scss']
 })
 export class AddNoteComponent implements OnInit {
-  
-  constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,) {
+
+  @Output() updateList=new EventEmitter<{title:"",description:""}>();;
+  hiddeCreateNote:boolean=true;
+  title:string="";
+  description:string="";
+
+  constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private noteService:NoteService) {
     iconRegistry.addSvgIconLiteral("Tick-icon", sanitizer.bypassSecurityTrustHtml(TICK_ICON))
     iconRegistry.addSvgIconLiteral("Brush-icon", sanitizer.bypassSecurityTrustHtml(BRUSH_ICON))
     iconRegistry.addSvgIconLiteral('Img-icon', sanitizer.bypassSecurityTrustHtml(IMG_ICON))
@@ -39,4 +45,21 @@ export class AddNoteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleCreateNote(action:string){
+    this.hiddeCreateNote = !this.hiddeCreateNote
+    if(action=="close"){
+      const noteObj={
+        "title": this.title,
+        "description": this.description,
+        "color": "",
+        "image": "",
+        "archive": false,
+        "pin": false,
+        "trash": false
+      }
+      this.noteService.addNote(noteObj).subscribe(res=> {
+        this.updateList.emit(res.data)
+      },err=>console.log(err))
+    }
+  }
 }

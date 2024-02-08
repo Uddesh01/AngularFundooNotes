@@ -1,6 +1,6 @@
 <div class="mat-card1">
-    <div class="note1">Take a note...</div>
-    <div class="icons1">
+    <div class="note1" *ngIf="hiddeCreateNote else createNote" (click)="handleCreateNote('open')">Take a note...</div>
+    <div class="icons1" *ngIf="hiddeCreateNote" >
         <button class="btn1">
             <mat-icon class="icon1" svgIcon="Tick-icon" aria-hidden="true" aria-label="Tick SVG icon"></mat-icon>
         </button>
@@ -14,15 +14,13 @@
 </div>
 
 
-<div class="main-div">
+<ng-template #createNote class="main-div" >
     <div class="displaynote-div">
       <div class="card">
         <div class="card-title">
-          <div class="select-btn">
-          </div>
-          <input placeholder="Title">
+          <input placeholder="Title" [(ngModel)]="title">
         </div>
-        <textarea  class="card-description" placeholder="Take a note..."></textarea>
+        <textarea  class="card-description" placeholder="Take a note..." [(ngModel)]="description"></textarea>
         <div class="icon-container">
           <button class="btn">
             <mat-icon class="icon" svgIcon="reminder-icon" aria-hidden="false" aria-label="Reminder SVG icon"></mat-icon>
@@ -49,8 +47,8 @@
           <button class="btn">
             <mat-icon class="icon" svgIcon="redo-icon" aria-hidden="false" aria-label="Restore SVG icon"></mat-icon>
           </button>
-          <button mat-button style="font-size: 17px;">Close</button>
+          <button mat-button style="font-size: 17px;" (click)="handleCreateNote('close')">Close</button>
         </div>
       </div>
     </div>
-  </div>
+  </ng-template>

@@ -46,7 +46,7 @@ mat-drawer {
 }
 mat-drawer-content {
     display: flex;
-    justify-content: center;
+    //justify-content: center;
     margin-left: 10px;
     background-color: white;
 }
@@ -58,6 +58,7 @@ mat-drawer-content {
     display: flex;
     flex-direction: column;
 }
+
 .btn {
     border: none; 
     margin-bottom: 2.3em;

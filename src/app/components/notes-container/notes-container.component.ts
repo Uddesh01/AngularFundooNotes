@@ -17,7 +17,8 @@ notesList:{title:"",description:""}[]=[]
   ngOnInit(): void {
     this.noteService.getAllNotes().subscribe(res => this.notesList=res.data,err=> console.log(err))
   }
- 
-
-
+  
+  updateNotesList($event:{title:"",description:""}){
+    this.notesList = [$event,...this.notesList]
+  }
 }

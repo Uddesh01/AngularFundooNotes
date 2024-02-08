@@ -33,4 +33,14 @@ export class HttpService {
       headers:authHeader
     })
   }
+
+  addNote(endpoint:string,data:object):Observable<any>{
+    const authHeader = new HttpHeaders({
+      'Accept': "application/json",
+      Authorization: `Bearer ${localStorage.getItem('authToken')}` || ""
+    })
+    return this.httpClient.post(this.baseUrl+endpoint,data,{
+      headers:authHeader
+    })
+  }
 }
