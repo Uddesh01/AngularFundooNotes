@@ -23,7 +23,7 @@ import {
 })
 export class AddNoteComponent implements OnInit {
 
-  @Output() updateList = new EventEmitter<{action:string,data:{title:"",description:"",noteID:number}}>();
+  @Output() updateList = new EventEmitter<{action:string,data:{title:"",description:"",noteID:number,color:string}}>();
   hiddenCreateNote:boolean=true;
   title:string="";
   description:string="";
@@ -57,9 +57,9 @@ export class AddNoteComponent implements OnInit {
         "trash": false
       }
       this.noteService.addNote(noteObj).subscribe( res=> {
-        this.updateList.emit({action:"addNote",data:{title:res.data.title,description:res.data.description,noteID:res.data.noteID}})
-        this.title = "";
-        this.description = "";
+        this.updateList.emit({action:"addNote",data:{title:res.data.title,description:res.data.description,noteID:res.data.noteID, color:res.data.color}})
+        this.title=''
+        this.description=''
       },err=>console.log(err))
     }
   }

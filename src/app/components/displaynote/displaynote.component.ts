@@ -15,6 +15,7 @@ import {
   DELETE_FOREVER_ICON
 } from 'src/assets/svg-icons';
 import { NoteService } from 'src/app/services/note.service';
+import { not } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -23,10 +24,11 @@ import { NoteService } from 'src/app/services/note.service';
   styleUrls: ['./displaynote.component.scss']
 })
 export class DisplaynoteComponent implements OnInit {
-  @Output() updateList = new EventEmitter<{ action: string, data: { title: string, description: string, noteID: number } }>();
-  @Input() note!: { title: string, description: string, noteID: number };
-  @Input() iconAction!:string;
- 
+  @Output() updateList = new EventEmitter<{ action: string, data: { title: string, description: string, noteID: number, color: string } }>();
+  @Input() note!: { title: string, description: string, noteID: number, color: string };
+  @Input() iconAction!: string;
+  showColorPicker: boolean = false;
+
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, router: Router, private noteService: NoteService) {
     iconRegistry.addSvgIconLiteral("reminder-icon", sanitizer.bypassSecurityTrustHtml(REMINDER_ICON))
     iconRegistry.addSvgIconLiteral("edit-icon", sanitizer.bypassSecurityTrustHtml(EDIT_ICON))
@@ -44,27 +46,57 @@ export class DisplaynoteComponent implements OnInit {
   }
 
   handleIconsClick(action: string, noteID: number) {
-    if (action === "archive"||action === "unarchive") {
+    if (action === "archive" || action === "unarchive") {
       this.noteService.archive(noteID).subscribe(res => {
-        this.updateList.emit({ action: "archive", data: { title: this.note.title, description: this.note.description, noteID: this.note.noteID } })
+        this.updateList.emit({ action: "archive", data: { title: this.note.title, description: this.note.description, noteID: this.note.noteID, color: this.note.color } })
       }, err => console.log(err))
     }
     else if (action === "trash") {
-      console.log("trash")
-      console.log(noteID)
       this.noteService.trash(noteID).subscribe(res => {
-        this.updateList.emit({ action: "trash", data: { title: this.note.title, description: this.note.description, noteID: this.note.noteID } })
+        this.updateList.emit({ action: "trash", data: { 
+          title: this.note.title, 
+          description: this.note.description, 
+          noteID: this.note.noteID, 
+          color: this.note.color} })
       }, err => console.log(err))
     }
 
     else if (action === "delete") {
-      console.log("delete");
-      console.log(noteID);
       this.noteService.delete(noteID).subscribe(res => {
-        this.updateList.emit({ action: "trash", data: { title: this.note.title, description: this.note.description, noteID: this.note.noteID } })
-      }, err => console.log(err))    
+        this.updateList.emit({
+          action: "trash",
+          data: {
+            title: this.note.title,
+            description: this.note.description,
+            noteID: this.note.noteID,
+            color: this.note.color
+          }
+        })
+      }, err => console.log(err))
     }
-    
+  }
 
+  toggleColorPicker() {
+    this.showColorPicker = !this.showColorPicker;
+  }
+
+  selectColor(color: string, noteID: number) {
+    this.showColorPicker = false;
+    console.log('Note color before update:', this.note.color)
+    console.log(color);
+    this.noteService.colorCall(noteID, color).subscribe
+      (res => {
+        this.updateList.emit({
+          action: "color",
+          data: {
+            title: this.note.title,
+            description: this.note.description,
+            noteID: this.note.noteID,
+            color: color
+          }
+        });
+      },
+        err =>
+          console.error(err))
   }
 }

@@ -25,4 +25,9 @@ export class NoteService {
   delete(noteID:number){
     return this.httpService.delete(`Note/DeleteNote?noteId=${noteID}`)
   }
+  colorCall(noteId:number, colorCode:string) {
+    const encodedColorCode = encodeURIComponent(colorCode);      
+    console.log(encodedColorCode)  
+    return this.httpService.colorCall(`Note/ChangeColor?noteId=${noteId}&color=${encodedColorCode}`)
+}
 }

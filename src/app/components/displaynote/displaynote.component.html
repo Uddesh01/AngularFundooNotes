@@ -1,10 +1,11 @@
 <div class="main-div">
   <div class="displaynote-div">
-    <div class="card">
+    <div class="card" [style.background-color]="note.color">
       <div class="card-title">
         <span>{{note.title}}</span>
       </div>
-      <textarea class="card-description">{{note.description}}</textarea>
+      
+<textarea class="card-description" [style.background-color]="note.color ? note.color : '#fffff'">{{ note.description }}</textarea>
       <div class="icon-container" *ngIf="iconAction != 'trash'; else trashIcons">
         <button class="btn">
           <mat-icon class="icon" svgIcon="reminder-icon" aria-hidden="false" aria-label="Reminder SVG icon"></mat-icon>
@@ -12,31 +13,34 @@
         <button class="btn">
           <mat-icon class="icon" svgIcon="coll-icon" aria-hidden="false" aria-label="Collaborator SVG icon"></mat-icon>
         </button>
-        <button class="btn">
+        <button class="btn" (click)="toggleColorPicker()">
           <mat-icon class="icon" svgIcon="Color-Palatte-icon" aria-hidden="false"
             aria-label="Color Palette SVG icon"></mat-icon>
         </button>
         <button class="btn">
           <mat-icon class="icon" svgIcon="img-icon" aria-hidden="false" aria-label="Image SVG icon"></mat-icon>
         </button>
-        <ng-container *ngIf="iconAction === 'note'; else archiveButton">
+        <ng-container *ngIf="iconAction === 'note'; else unarchiveButton">
           <button class="btn">
-            <mat-icon class="icon" svgIcon="archive-icon" (click)="handleIconsClick('archive', note.noteID)" aria-hidden="false" aria-label="Archive SVG icon"></mat-icon>
+            <mat-icon class="icon" svgIcon="archive-icon" (click)="handleIconsClick('archive', note.noteID)"
+              aria-hidden="false" aria-label="Archive SVG icon"></mat-icon>
           </button>
         </ng-container>
-        <ng-template #archiveButton>
+        <ng-template #unarchiveButton>
           <button class="btn">
-            <mat-icon class="icon" svgIcon="unarchive-icon" (click)="handleIconsClick('unarchive', note.noteID)" aria-hidden="false" aria-label="Unarchive SVG icon"></mat-icon>
+            <mat-icon class="icon" svgIcon="unarchive-icon" (click)="handleIconsClick('unarchive', note.noteID)"
+              aria-hidden="false" aria-label="Unarchive SVG icon"></mat-icon>
           </button>
         </ng-template>
         <button class="btn">
-          <mat-icon class="icon" svgIcon="more-icon" [matMenuTriggerFor]="menu1" aria-hidden="false" aria-label="More SVG icon"></mat-icon>
+          <mat-icon class="icon" svgIcon="more-icon" [matMenuTriggerFor]="menu1" aria-hidden="false"
+            aria-label="More SVG icon"></mat-icon>
         </button>
         <mat-menu #menu1="matMenu">
           <button mat-menu-item (click)="handleIconsClick('trash', note.noteID)">
             <span>Delete note</span>
           </button>
-          <button mat-menu-item >
+          <button mat-menu-item>
             <span>Add label</span>
           </button>
           <button mat-menu-item>
@@ -50,13 +54,49 @@
       <ng-template #trashIcons>
         <div class="icon-container">
           <button class="btn" (click)="handleIconsClick('delete', note.noteID)">
-            <mat-icon class="icon" svgIcon="delete-icon"  aria-hidden="false" aria-label="Delete SVG icon"></mat-icon>
+            <mat-icon class="icon" svgIcon="delete-icon" aria-hidden="false" aria-label="Delete SVG icon"></mat-icon>
           </button>
           <button class="btn" (click)="handleIconsClick('trash', note.noteID)">
-            <mat-icon class="icon" svgIcon="restore-icon"  aria-hidden="false" aria-label="Restore SVG icon"></mat-icon>
+            <mat-icon class="icon" svgIcon="restore-icon" aria-hidden="false" aria-label="Restore SVG icon"></mat-icon>
           </button>
         </div>
       </ng-template>
     </div>
+
+    <div *ngIf="showColorPicker" class="color-picker-container">
+      <div class="row row1" style="border-bottom: 1px solid #ccc; margin-bottom: 5px;">
+        <button class="color-btn" style="background-color: #FAAFA8; border: 1px solid #FAAFA8;"
+          (click)="selectColor('#FAAFA8',note.noteID)"></button>
+        <button class="color-btn" style="background-color: #F39F76; border: 1px solid #F39F76;"
+          (click)="selectColor('#F39F76',note.noteID)"></button>
+        <button class="color-btn" style="background-color: #FFF8B8; border: 1px solid #FFF8B8;"
+          (click)="selectColor('#FFF8B8',note.noteID)"></button>
+        <button class="color-btn" style="background-color: #E2F6D3; border: 1px solid #E2F6D3;"
+          (click)="selectColor('#E2F6D3',note.noteID)"></button>
+      </div>
+      <div class="row row2" style="border-bottom: 1px solid #ccc; margin-bottom: 5px;">
+        <button class="color-btn" style="background-color: #B4DDD3; border: 1px solid #B4DDD3;"
+          (click)="selectColor('#B4DDD3',note.noteID)"></button>
+        <button class="color-btn" style="background-color: #D4E4ED; border: 1px solid #D4E4ED;"
+          (click)="selectColor('#D4E4ED',note.noteID)"></button>
+        <button class="color-btn" style="background-color: #AECCDC; border: 1px solid #AECCDC;"
+          (click)="selectColor('#AECCDC',note.noteID)"></button>
+        <button class="color-btn" style="background-color: #D3BFDB; border: 1px solid #D3BFDB;"
+          (click)="selectColor('#D3BFDB',note.noteID)"></button>
+      </div>
+      <div class="row row3">
+        <button class="color-btn" style="background-color: #F6E2DD; border: 1px solid #F6E2DD;"
+          (click)="selectColor('#F6E2DD',note.noteID)"></button>
+        <button class="color-btn" style="background-color: #E9E3D4; border: 1px solid #E9E3D4;"
+          (click)="selectColor('#E9E3D4',note.noteID)"></button>
+        <button class="color-btn" style="background-color: #EFEFF1; border: 1px solid #EFEFF1;"
+          (click)="selectColor('#EFEFF1',note.noteID)"></button>
+        <button class="color-btn" style="background-color: #D3BFDB; border: 1px solid #D3BFDB;"
+          (click)="selectColor('#D3BFDB',note.noteID)"></button>
+      </div>
+    </div>
+
+
+
   </div>
 </div>

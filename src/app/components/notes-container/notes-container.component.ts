@@ -6,19 +6,19 @@ import { NoteService } from 'src/app/services/note.service';
   selector: 'app-notes-container',
   templateUrl: './notes-container.component.html',
   styleUrls: ['./notes-container.component.scss'],
-  host:{
-    class:"app-notes-container-cnt"
+  host: {
+    class: "app-notes-container-cnt"
   }
 })
 export class NotesContainerComponent implements OnInit {
-notesList:{title:string,description:string,noteID:number}[]=[]
-iconAction: string = '';
-  constructor(private noteService:NoteService) { }
+  notesList: { title: string, description: string, noteID: number, color: string }[] = []
+  iconAction: string = '';
+  constructor(private noteService: NoteService) { }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.noteService.getAllNotes().subscribe(
       res => {
-        this.notesList = res.data.filter((note: { archive: boolean, trash: boolean }) => !note.archive && !note.trash);
+        this.notesList = res.data.filter((note: { archive: boolean, trash: boolean }) => !note.archive && !note.trash);  
       },
       err => {
         console.error(err);
@@ -26,19 +26,28 @@ iconAction: string = '';
     );
     this.iconAction = "note";
   }
-  
-  updateNotesList($event:{action:string,data:{title:string,description:string,noteID:number}}){
-    if($event.action === "addNote"){
-     // this.iconAction="note"
-      this.notesList = [$event.data,...this.notesList]
+
+  updateNotesList($event: { action: string, data: { title: string, description: string, noteID: number, color: string } }) {
+    if ($event.action === "addNote") {
+      // this.iconAction="note"
+      // const newData = { ...$event.data, color: '#ffffff' };
+      this.notesList = [$event.data, ...this.notesList]
     }
-    else if($event.action === "archive"){
+    else if ($event.action === "archive") {
       //this.iconAction="note"
       this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)
     }
-    else if($event.action === "trash"){
+    else if ($event.action === "trash") {
       //this.iconAction="trash"
       this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)
+    }
+    else if ($event.action === "color") {
+      // Update the color of the note with the matching noteID
+      this.notesList.map(note => {
+        if (note.noteID === $event.data.noteID) {
+          note.color = $event.data.color;
+        }
+      });
     }
   }
 }
