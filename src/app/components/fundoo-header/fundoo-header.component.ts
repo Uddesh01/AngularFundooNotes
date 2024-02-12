@@ -8,9 +8,10 @@ import {
   LIST_VIEW_ICON,
   OTHER_MENU_ICON
 } from 'src/assets/svg-icons';
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { Subscription } from 'rxjs';
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -22,10 +23,10 @@ import { Subscription } from 'rxjs';
   }
 })
 export class FundooHeaderComponent implements OnInit {
-  drawerState!:boolean;
+  drawerState!: boolean;
   subscription!: Subscription;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private data: DataServiceService) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private data: DataServiceService, public router: Router) {
     iconRegistry.addSvgIconLiteral("Menu-icon", sanitizer.bypassSecurityTrustHtml(MENU_ICON))
     iconRegistry.addSvgIconLiteral("Search-icon", sanitizer.bypassSecurityTrustHtml(SEARCH_ICON))
     iconRegistry.addSvgIconLiteral("Refresh-icon", sanitizer.bypassSecurityTrustHtml(REFRESH_ICON))
@@ -38,14 +39,17 @@ export class FundooHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.data.currDrawerState.subscribe(state => this.drawerState = state)
   }
-  
-  handleToggleDrawer(){
+
+  handleToggleDrawer() {
     this.data.toggleDrawerState(!this.drawerState)
-    }
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
- 
 
+  handleAccClick() {
+    localStorage.removeItem('authToken')
+    this.router.navigate(["/login"])
+  }
 }

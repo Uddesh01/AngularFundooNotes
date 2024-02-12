@@ -23,8 +23,8 @@ import {
 })
 export class AddNoteComponent implements OnInit {
 
-  @Output() updateList=new EventEmitter<{title:"",description:""}>();;
-  hiddeCreateNote:boolean=true;
+  @Output() updateList = new EventEmitter<{action:string,data:{title:"",description:"",noteID:number}}>();
+  hiddenCreateNote:boolean=true;
   title:string="";
   description:string="";
 
@@ -44,10 +44,9 @@ export class AddNoteComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
   handleCreateNote(action:string){
-    this.hiddeCreateNote = !this.hiddeCreateNote
-    if(action=="close"){
+    this.hiddenCreateNote = !this.hiddenCreateNote
+    if(action=="close" && (this.title != "" || this.description != "")){
       const noteObj={
         "title": this.title,
         "description": this.description,
@@ -57,8 +56,10 @@ export class AddNoteComponent implements OnInit {
         "pin": false,
         "trash": false
       }
-      this.noteService.addNote(noteObj).subscribe(res=> {
-        this.updateList.emit(res.data)
+      this.noteService.addNote(noteObj).subscribe( res=> {
+        this.updateList.emit({action:"addNote",data:{title:res.data.title,description:res.data.description,noteID:res.data.noteID}})
+        this.title = "";
+        this.description = "";
       },err=>console.log(err))
     }
   }

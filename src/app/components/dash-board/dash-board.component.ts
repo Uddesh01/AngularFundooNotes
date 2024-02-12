@@ -3,14 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {
   NOTE_ICON,
   REMINDER_ICON,
-  COLLABRATOR_ICON,
-  COLOR_PALATTE_ICON,
-  IMG_ICON,
   ARCHIVE_ICON,
-  MORE_ICON,
-  DELETE_FOREVER_ICON,
-  RESTORE_ICON,
-  UNARCHIVE_ICON,
   EDIT_ICON,
   TRASH_ICON
 

@@ -24,6 +24,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import { AddNoteComponent } from './components/add-note/add-note.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { AddNoteComponent } from './components/add-note/add-note.component';
     MatCardModule,
     HttpClientModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
-
 <div class="container">
-    <div *ngFor="let note of notesList">     
-            <app-display-note [title]="note.title" [description]="note.description"></app-display-note>     
+    <div *ngFor="let note of notesList">
+        <app-display-note [iconAction]="iconAction" [note]="note" (updateList)="updateNotesList($event)"></app-display-note>
     </div>
 </div>

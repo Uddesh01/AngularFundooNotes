@@ -27,8 +27,7 @@ export class HttpService {
     const authHeader = new HttpHeaders({
       'Accept': "application/json",
       Authorization: `Bearer ${localStorage.getItem('authToken')}` || ""
-    })
-  
+    }) 
     return this.httpClient.get(this.baseUrl+endpoint,{
       headers:authHeader
     })
@@ -40,6 +39,36 @@ export class HttpService {
       Authorization: `Bearer ${localStorage.getItem('authToken')}` || ""
     })
     return this.httpClient.post(this.baseUrl+endpoint,data,{
+      headers:authHeader
+    })
+  }
+
+  archive(endpoint:string):Observable<any>{
+    const authHeader = new HttpHeaders({
+      'Accept': "application/json",
+      Authorization: `Bearer ${localStorage.getItem('authToken')}` || ""
+    })
+    return this.httpClient.put(this.baseUrl+endpoint,{},{
+      headers:authHeader
+    })
+  }
+
+  trash(endpoint:string):Observable<any>{
+    const authHeader = new HttpHeaders({
+      'Accept': "application/json",
+      Authorization: `Bearer ${localStorage.getItem('authToken')}` || ""
+    })
+    return this.httpClient.put(this.baseUrl+endpoint,{},{
+      headers:authHeader
+    })
+  }
+
+  delete(endpoint:string):Observable<any>{
+    const authHeader = new HttpHeaders({
+      'Accept': "application/json",
+      Authorization: `Bearer ${localStorage.getItem('authToken')}` || ""
+    })
+    return this.httpClient.delete(this.baseUrl+endpoint,{
       headers:authHeader
     })
   }

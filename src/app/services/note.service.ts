@@ -15,5 +15,14 @@ export class NoteService {
   addNote(data:object){
     return this.httpService.addNote("Note/AddNote",data)
   }
-  
+
+  archive(noteID:number){
+    return this.httpService.archive(`Note/Archive-UnArchive?noteId=${noteID}`)
+  }
+  trash(noteID:number){
+    return this.httpService.trash(`Note/Trash-UnTrash?noteId=${noteID}`)
+  }
+  delete(noteID:number){
+    return this.httpService.delete(`Note/DeleteNote?noteId=${noteID}`)
+  }
 }

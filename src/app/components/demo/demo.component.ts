@@ -11,9 +11,8 @@ name: string = "Hello World"
 
   ngOnInit(): void {
   }
-
+  
   handleBtnClick(){
     console.log(this.name)
   }
-
 }

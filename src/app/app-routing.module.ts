@@ -11,7 +11,7 @@ import { TrashContainerComponent } from './components/trash-container/trash-cont
 import { AddNoteComponent } from './components/add-note/add-note.component';
 
 const routes: Routes = [
-  {path:"", component:DemoComponent },
+  {path:"", component:LoginComponent},
   {path:"login", component:LoginComponent},
   {path:"register", component:RegisterComponent},
   {path:"dashboard",component:DashBoardComponent,
