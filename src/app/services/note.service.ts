@@ -27,7 +27,9 @@ export class NoteService {
   }
   colorCall(noteId:number, colorCode:string) {
     const encodedColorCode = encodeURIComponent(colorCode);      
-    console.log(encodedColorCode)  
     return this.httpService.colorCall(`Note/ChangeColor?noteId=${noteId}&color=${encodedColorCode}`)
+}
+editNote(noteID: number, data: object)  {
+  return this.httpService.editNote(`Note/EditNote?noteId=${noteID}`, data);
 }
 }

@@ -82,4 +82,15 @@ export class HttpService {
       headers:authHeader
     })
   }
+  editNote(endpoint: string, data: object): Observable<any> {
+    const authHeader = new HttpHeaders({
+      'Accept': "application/json",
+      Authorization: `Bearer ${localStorage.getItem('authToken')}` || ""
+    });
+  
+    return this.httpClient.put(this.baseUrl + endpoint, data, {
+      headers: authHeader
+    });
+  }
+  
 }

@@ -25,6 +25,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import { AddNoteComponent } from './components/add-note/add-note.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import {MatMenuModule} from '@angular/material/menu';
     NotesContainerComponent,
     TrashContainerComponent,
     ArchiveContainerComponent,
-    AddNoteComponent
+    AddNoteComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,9 @@ import {MatMenuModule} from '@angular/material/menu';
     HttpClientModule,
     MatToolbarModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

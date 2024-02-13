@@ -1,37 +1,37 @@
 <div class="dashboard_header" style="width: 100%;">
     <mat-toolbar>
         <div class="rightside-icon">
-            <button class="btn button" (click)="handleToggleDrawer()">
+            <button class="btn button" (click)="handleToggleDrawer()"  matTooltip="Main menu">
                 <mat-icon class="icon" svgIcon="Menu-icon" aria-hidden="false" aria-label="Menu SVG icon"></mat-icon>
             </button>
             <img src="../../assets/googlekeepLogo.png" class="keep-img" alt="google keep">
-            <span>Keep</span>
+            <span>Fundoo Notes</span>
         </div>
         <div class="search-container">
-            <button class="btn button">
+            <button class="btn button"  matTooltip="Search">
                 <mat-icon class="search-icon btn" svgIcon="Search-icon" aria-hidden="true"
                     aria-label="Search SVG icon"></mat-icon>
             </button>
             <input type="text" class="search-input" placeholder="Search">
         </div>
         <div class="leftside-icon">
-            <button class="btn refresh-btn button">
+            <button class="btn refresh-btn button"  matTooltip="Refresh">
                 <mat-icon class="icon" svgIcon="Refresh-icon" aria-hidden="true"
                     aria-label="Refresh SVG icon"></mat-icon>
             </button>
-            <button class="btn list-view-btn button">
+            <button class="btn list-view-btn button"  matTooltip="List">
                 <mat-icon class="icon" svgIcon="List-view-icon" aria-hidden="true"
                     aria-label="List view SVG icon"></mat-icon>
             </button>
-            <button class="btn setting-btn button">
+            <button class="btn setting-btn button"  matTooltip="Setting">
                 <mat-icon class="icon" svgIcon="Setting-icon" aria-hidden="true"
                     aria-label="Setting SVG icon"></mat-icon>
             </button>
-            <button class="btn other-menu-btn button">
+            <button class="btn other-menu-btn button"  matTooltip="Other menu">
                 <mat-icon class="icon" svgIcon="Other-menu-icon" aria-hidden="true"
                     aria-label="Other menu SVG icon"></mat-icon>
             </button>
-            <button class="btn button" [matMenuTriggerFor]="menu1">
+            <button class="btn button" [matMenuTriggerFor]="menu1"  matTooltip="fundoo account">
                 <div class="fundoo-note-account">
                     <span>U</span>
                 </div>

@@ -16,6 +16,8 @@ import {
 } from 'src/assets/svg-icons';
 import { NoteService } from 'src/app/services/note.service';
 import { not } from '@angular/compiler/src/output/output_ast';
+import { MatDialog } from '@angular/material/dialog';
+import { EditComponent } from '../edit/edit.component';
 
 
 @Component({
@@ -29,7 +31,7 @@ export class DisplaynoteComponent implements OnInit {
   @Input() iconAction!: string;
   showColorPicker: boolean = false;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, router: Router, private noteService: NoteService) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, router: Router, private noteService: NoteService,public dialog: MatDialog) {
     iconRegistry.addSvgIconLiteral("reminder-icon", sanitizer.bypassSecurityTrustHtml(REMINDER_ICON))
     iconRegistry.addSvgIconLiteral("edit-icon", sanitizer.bypassSecurityTrustHtml(EDIT_ICON))
     iconRegistry.addSvgIconLiteral('archive-icon', sanitizer.bypassSecurityTrustHtml(ARCHIVE_ICON))
@@ -53,11 +55,14 @@ export class DisplaynoteComponent implements OnInit {
     }
     else if (action === "trash") {
       this.noteService.trash(noteID).subscribe(res => {
-        this.updateList.emit({ action: "trash", data: { 
-          title: this.note.title, 
-          description: this.note.description, 
-          noteID: this.note.noteID, 
-          color: this.note.color} })
+        this.updateList.emit({
+          action: "trash", data: {
+            title: this.note.title,
+            description: this.note.description,
+            noteID: this.note.noteID,
+            color: this.note.color
+          }
+        })
       }, err => console.log(err))
     }
 
@@ -82,8 +87,6 @@ export class DisplaynoteComponent implements OnInit {
 
   selectColor(color: string, noteID: number) {
     this.showColorPicker = false;
-    console.log('Note color before update:', this.note.color)
-    console.log(color);
     this.noteService.colorCall(noteID, color).subscribe
       (res => {
         this.updateList.emit({
@@ -96,7 +99,15 @@ export class DisplaynoteComponent implements OnInit {
           }
         });
       },
-        err =>
-          console.error(err))
+        err => console.error(err))
   }
+  openEditNote(){
+      const dialogRef = this.dialog.open(EditComponent,{
+          data:{noteData:this.note}
+      })
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result)
+        this.updateList.emit({ action: "edit", data: { title: result.title, description: result.description, noteID: result.noteID, color: result.color } })
+      });
+    }
 }

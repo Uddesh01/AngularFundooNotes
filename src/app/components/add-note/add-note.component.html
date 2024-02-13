@@ -1,13 +1,13 @@
 <div class="mat-card1">
   <div class="note1" *ngIf="hiddenCreateNote else createNote" (click)="handleCreateNote('open')">Take a note...</div>
   <div class="icons1" *ngIf="hiddenCreateNote">
-    <button class="btn1">
+    <button class="btn1"  matTooltip="New list">
       <mat-icon class="icon1" svgIcon="Tick-icon" aria-hidden="true" aria-label="Tick SVG icon"></mat-icon>
     </button>
-    <button class="btn1">
+    <button class="btn1"  matTooltip="New note with drawing">
       <mat-icon class="icon1" svgIcon="Brush-icon" aria-hidden="true" aria-label="Brush view SVG icon"></mat-icon>
     </button>
-    <button class="btn1">
+    <button class="btn1"  matTooltip="New note with image">
       <mat-icon class="icon1" svgIcon="Img-icon" aria-hidden="true" aria-label="Img view SVG icon"></mat-icon>
     </button>
   </div>

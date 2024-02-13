@@ -29,24 +29,26 @@ export class NotesContainerComponent implements OnInit {
 
   updateNotesList($event: { action: string, data: { title: string, description: string, noteID: number, color: string } }) {
     if ($event.action === "addNote") {
-      // this.iconAction="note"
-      // const newData = { ...$event.data, color: '#ffffff' };
       this.notesList = [$event.data, ...this.notesList]
     }
     else if ($event.action === "archive") {
-      //this.iconAction="note"
       this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)
     }
     else if ($event.action === "trash") {
-      //this.iconAction="trash"
       this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)
     }
-    else if ($event.action === "color") {
-      // Update the color of the note with the matching noteID
-      this.notesList.map(note => {
+    else if ($event.action === "color" || $event.action === "edit") {
+      this.notesList = this.notesList.map(note => {
         if (note.noteID === $event.data.noteID) {
-          note.color = $event.data.color;
+          if ($event.action === "color") {
+            note.color = $event.data.color;
+          } 
+          else if ($event.action === "edit") {
+            note.title = $event.data.title;
+            note.description = $event.data.description;
+          }
         }
+        return note;
       });
     }
   }
