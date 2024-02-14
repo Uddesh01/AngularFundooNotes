@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NoteService } from 'src/app/services/note.service';
+import { FormsModule } from '@angular/forms';
 import {
   IMG_ICON,
   TICK_ICON,
@@ -23,10 +24,15 @@ import {
 })
 export class AddNoteComponent implements OnInit {
 
-  @Output() updateList = new EventEmitter<{action:string,data:{title:"",description:"",noteID:number,color:string}}>();
+
+  @Output() updateList = new EventEmitter<{action:string,data:{title:"",description:"",noteID:number,color:string , archive:boolean}}>();
   hiddenCreateNote:boolean=true;
   title:string="";
   description:string="";
+  archive:boolean= false;
+  color:string="";
+  showColorPicker: boolean = false;
+
 
   constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private noteService:NoteService) {
     iconRegistry.addSvgIconLiteral("Tick-icon", sanitizer.bypassSecurityTrustHtml(TICK_ICON))
@@ -50,17 +56,33 @@ export class AddNoteComponent implements OnInit {
       const noteObj={
         "title": this.title,
         "description": this.description,
-        "color": "",
+        "color": this.color,
         "image": "",
-        "archive": false,
+        "archive": this.archive,
         "pin": false,
         "trash": false
       }
       this.noteService.addNote(noteObj).subscribe( res=> {
-        this.updateList.emit({action:"addNote",data:{title:res.data.title,description:res.data.description,noteID:res.data.noteID, color:res.data.color}})
+        this.updateList.emit({action:"addNote",data:{title:res.data.title,description:res.data.description,noteID:res.data.noteID, color:res.data.color, archive: res.data.archive}})
         this.title=''
         this.description=''
+        this.archive=false
+        this.color="#ffffff"  
       },err=>console.log(err))
     }
   }
+
+  handleArchive(){
+    this.archive=!this.archive
+    console.log(this.archive);
+  }
+
+  selectColor(color: string) {
+    this.color = color
+    this.showColorPicker=false
+    }
+
+    toggleColorPicker() {
+      this.showColorPicker = !this.showColorPicker;
+    }
 }

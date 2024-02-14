@@ -9,12 +9,13 @@ import { NotesContainerComponent } from './components/notes-container/notes-cont
 import { ArchiveContainerComponent } from './components/archive-container/archive-container.component';
 import { TrashContainerComponent } from './components/trash-container/trash-container.component';
 import { AddNoteComponent } from './components/add-note/add-note.component';
+import { AuthGaurdService } from './services/auth-gaurd.service';
 
 const routes: Routes = [
   {path:"", component:LoginComponent},
   {path:"login", component:LoginComponent},
   {path:"register", component:RegisterComponent},
-  {path:"dashboard",component:DashBoardComponent,
+  {path:"dashboard",component:DashBoardComponent, canActivate:[AuthGaurdService],
    children:[
     {path:"notes",component:NotesContainerComponent},
     {path:"archive",component:ArchiveContainerComponent},

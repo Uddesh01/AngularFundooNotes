@@ -11,7 +11,7 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class TrashContainerComponent implements OnInit {
   iconAction: string = '';
-  notesList: { title: string; description: string; noteID: number , color:string}[] = [];
+  notesList: { title: string; description: string; noteID: number , color:string, archive: boolean}[] = [];
   hiddenDeleteButton:boolean=true;
   constructor(private noteService: NoteService) { }
 
@@ -26,7 +26,7 @@ export class TrashContainerComponent implements OnInit {
      this.iconAction = "trash";
   }
 
-  updateNotesList($event:{action:string,data:{title:string,description:string,noteID:number,color:string}}){
+  updateNotesList($event:{action:string,data:{title:string,description:string,noteID:number,color:string, archive: boolean}}){
     if($event.action === "trash"){
       
       this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)

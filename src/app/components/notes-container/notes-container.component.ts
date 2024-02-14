@@ -11,7 +11,7 @@ import { NoteService } from 'src/app/services/note.service';
   }
 })
 export class NotesContainerComponent implements OnInit {
-  notesList: { title: string, description: string, noteID: number, color: string }[] = []
+  notesList: { title: string, description: string, noteID: number, color: string, archive: boolean }[] = []
   iconAction: string = '';
   constructor(private noteService: NoteService) { }
 
@@ -27,9 +27,11 @@ export class NotesContainerComponent implements OnInit {
     this.iconAction = "note";
   }
 
-  updateNotesList($event: { action: string, data: { title: string, description: string, noteID: number, color: string } }) {
+  updateNotesList($event: { action: string, data: { title: string, description: string, noteID: number, color: string , archive: boolean} }) {
     if ($event.action === "addNote") {
-      this.notesList = [$event.data, ...this.notesList]
+      if (!$event.data.archive) {
+        this.notesList = [$event.data, ...this.notesList];   
+      }      
     }
     else if ($event.action === "archive") {
       this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)

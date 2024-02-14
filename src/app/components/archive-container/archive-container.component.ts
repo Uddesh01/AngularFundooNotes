@@ -9,8 +9,8 @@ import { NoteService } from 'src/app/services/note.service';
   styleUrls: ['./archive-container.component.scss']
 })
 export class ArchiveContainerComponent implements OnInit {
-  notesList: { title: string; description: string; noteID: number; color:string }[] = [];
-  @Output() updateList = new EventEmitter<{ action: string, data: { title: string, description: string, noteID: number, color:string } }>();
+  notesList: { title: string; description: string; noteID: number; color:string, archive:boolean }[] = [];
+  @Output() updateList = new EventEmitter<{ action: string, data: { title: string, description: string, noteID: number, color:string, archive: boolean } }>();
   iconAction: string = '';
   constructor(private noteService: NoteService) {
    }
@@ -27,7 +27,7 @@ export class ArchiveContainerComponent implements OnInit {
     this.iconAction = "archive";
   } 
 
-  updateNotesList($event: { action: string, data: { title: string, description: string, noteID: number , color:string} }): void {
+  updateNotesList($event: { action: string, data: { title: string, description: string, noteID: number , color:string , archive: boolean} }): void {
     if ($event.action === "archive") {
       this.notesList = this.notesList.filter(note => note.noteID !== $event.data.noteID);
     }

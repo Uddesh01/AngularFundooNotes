@@ -26,8 +26,8 @@ import { EditComponent } from '../edit/edit.component';
   styleUrls: ['./displaynote.component.scss']
 })
 export class DisplaynoteComponent implements OnInit {
-  @Output() updateList = new EventEmitter<{ action: string, data: { title: string, description: string, noteID: number, color: string } }>();
-  @Input() note!: { title: string, description: string, noteID: number, color: string };
+  @Output() updateList = new EventEmitter<{ action: string, data: { title: string, description: string, noteID: number, color: string , archive: boolean } }>();
+  @Input() note!: { title: string, description: string, noteID: number, color: string, archive:boolean };
   @Input() iconAction!: string;
   showColorPicker: boolean = false;
 
@@ -50,7 +50,7 @@ export class DisplaynoteComponent implements OnInit {
   handleIconsClick(action: string, noteID: number) {
     if (action === "archive" || action === "unarchive") {
       this.noteService.archive(noteID).subscribe(res => {
-        this.updateList.emit({ action: "archive", data: { title: this.note.title, description: this.note.description, noteID: this.note.noteID, color: this.note.color } })
+        this.updateList.emit({ action: "archive", data: { title: this.note.title, description: this.note.description, noteID: this.note.noteID, color: this.note.color ,archive: this.note.archive} })
       }, err => console.log(err))
     }
     else if (action === "trash") {
@@ -60,7 +60,8 @@ export class DisplaynoteComponent implements OnInit {
             title: this.note.title,
             description: this.note.description,
             noteID: this.note.noteID,
-            color: this.note.color
+            color: this.note.color,
+            archive: this.note.archive
           }
         })
       }, err => console.log(err))
@@ -74,7 +75,8 @@ export class DisplaynoteComponent implements OnInit {
             title: this.note.title,
             description: this.note.description,
             noteID: this.note.noteID,
-            color: this.note.color
+            color: this.note.color,
+            archive:this.note.archive
           }
         })
       }, err => console.log(err))
@@ -95,7 +97,8 @@ export class DisplaynoteComponent implements OnInit {
             title: this.note.title,
             description: this.note.description,
             noteID: this.note.noteID,
-            color: color
+            color: color,
+            archive:this.note.archive
           }
         });
       },
@@ -107,7 +110,7 @@ export class DisplaynoteComponent implements OnInit {
       })
       dialogRef.afterClosed().subscribe(result => {
         console.log(result)
-        this.updateList.emit({ action: "edit", data: { title: result.title, description: result.description, noteID: result.noteID, color: result.color } })
+        this.updateList.emit({ action: "edit", data: { title: result.title, description: result.description, noteID: result.noteID, color: result.color, archive: result.archive } })
       });
     }
 }

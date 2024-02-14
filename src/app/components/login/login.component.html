@@ -8,7 +8,7 @@
         <div>
             <div>
                 <mat-form-field appearance="outline">
-                    <mat-label>Email or Phone</mat-label>
+                    <mat-label>Email Address</mat-label>
                     <input formControlName="email" matInput type="email">
                     <mat-error *ngIf="submitted && f['email']?.hasError('email')">Invalid email</mat-error>
                     <mat-error *ngIf="submitted && f['email']?.hasError('required')">Email required</mat-error>
