@@ -17,13 +17,13 @@
                 </button>
                 <button class="btn">
                     <mat-icon class="icon" svgIcon="Color-Palatte-icon" aria-hidden="false"
-                        aria-label="Color Palette SVG icon"></mat-icon>
+                        aria-label="Color Palette SVG icon" (click)="toggleColorPicker()"></mat-icon>
                 </button>
                 <button class="btn">
                     <mat-icon class="icon" svgIcon="img-icon" aria-hidden="false"
                         aria-label="Image SVG icon"></mat-icon>
                 </button>
-                <button class="btn">
+                <button class="btn" (click)="handleArchive()">
                     <mat-icon class="icon" svgIcon="archive-icon" aria-hidden="false"
                         aria-label="Archive SVG icon"></mat-icon>
                 </button>
@@ -34,16 +34,42 @@
                 <button class="btn">
                     <mat-icon class="icon" svgIcon="undo-icon" aria-hidden="false"
                         aria-label="Undo SVG icon"></mat-icon>
-                </button>
-                <button class="btn">
-                    <mat-icon class="icon" svgIcon="redo-icon" aria-hidden="false"
-                        aria-label="Restore SVG icon"></mat-icon>
-                </button>
+                </button>  
                 <button mat-button style="font-size: 17px;" (click)="handleEditNote()">Close</button>
             </div>
         </div>
+        
     </div>
+        
 </div>
+<div *ngIf="showColorPicker" class="color-picker-container">
+    <div class="row">
+      <button class="color-btn" style="background-color: #FAAFA8; border: 1px solid #FAAFA8;"
+        (click)="selectColor('#FAAFA8')"></button>
+      <button class="color-btn" style="background-color: #F39F76; border: 1px solid #F39F76;"
+        (click)="selectColor('#F39F76')"></button>
+      <button class="color-btn" style="background-color: #FFF8B8; border: 1px solid #FFF8B8;"
+        (click)="selectColor('#FFF8B8')"></button>
+      <button class="color-btn" style="background-color: #E2F6D3; border: 1px solid #E2F6D3;"
+        (click)="selectColor('#E2F6D3')"></button>
+      <button class="color-btn" style="background-color: #B4DDD3; border: 1px solid #B4DDD3;"
+        (click)="selectColor('#B4DDD3')"></button>
+      <button class="color-btn" style="background-color: #D4E4ED; border: 1px solid #D4E4ED;"
+        (click)="selectColor('#D4E4ED')"></button>
+      <button class="color-btn" style="background-color: #AECCDC; border: 1px solid #AECCDC;"
+        (click)="selectColor('#AECCDC')"></button>
+      <button class="color-btn" style="background-color: #D3BFDB; border: 1px solid #D3BFDB;"
+        (click)="selectColor('#D3BFDB')"></button>
+      <button class="color-btn" style="background-color: #F6E2DD; border: 1px solid #F6E2DD;"
+        (click)="selectColor('#F6E2DD')"></button>
+      <button class="color-btn" style="background-color: #E9E3D4; border: 1px solid #E9E3D4;"
+        (click)="selectColor('#E9E3D4')"></button>
+      <button class="color-btn" style="background-color: #EFEFF1; border: 1px solid #EFEFF1;"
+        (click)="selectColor('#EFEFF1')"></button>
+      <button class="color-btn" style="background-color: #D3BFDB; border: 1px solid #D3BFDB;"
+        (click)="selectColor('#D3BFDB')"></button>
+    </div>
+  </div>
 <!-- <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>

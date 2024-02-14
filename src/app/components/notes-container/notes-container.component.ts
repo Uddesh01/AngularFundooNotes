@@ -48,10 +48,13 @@ export class NotesContainerComponent implements OnInit {
           else if ($event.action === "edit") {
             note.title = $event.data.title;
             note.description = $event.data.description;
+            note.color= $event.data.color;
+            note.archive=$event.data.archive;
           }
         }
         return note;
       });
+      this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)
     }
   }
 }

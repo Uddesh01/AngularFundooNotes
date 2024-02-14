@@ -7,7 +7,8 @@ interface noteData {
   title: string,
   description: string,
   noteID: number,
-  color: string
+  color: string,
+  archive: boolean,
 }
 
 @Component({
@@ -19,15 +20,19 @@ export class EditComponent implements OnInit {
 
   title!: string
   description!: string
-  color!: string
+  color!: string  
   noteID!: number
-  
+  archive!: boolean
+  showColorPicker: boolean = false;
+
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: { noteData: noteData }, public dialogRef: MatDialogRef<EditComponent>, public noteService: NoteService) {
     console.log(data)
     this.title = data.noteData.title
     this.description = data.noteData.description
     this.color = data.noteData.color
     this.noteID = data.noteData.noteID
+    this.archive = data.noteData.archive
   }
 
   ngOnInit(): void {
@@ -36,21 +41,39 @@ export class EditComponent implements OnInit {
   handleEditNote() {
     this.noteService.editNote(this.noteID, {
       title: this.title,
-      description: this.description
+      description: this.description,
+      color: this.color,
+      archive: this.archive
+
     }).subscribe(
-       res => {
+      res => {
         this.dialogRef.close({
           operation: "edit",
           noteID: this.noteID,
           title: this.title,
           description: this.description,
-          color: this.color
+          color: this.color,
+          archive: this.archive
         });
       },
-     err=> {
+      err => {
         console.error(err);
       }
-    )};
+    )
+  };
+
+  selectColor(color: string) {
+    this.color = color
+    this.showColorPicker = false
   }
 
-  
+  toggleColorPicker() {
+    this.showColorPicker = !this.showColorPicker;
+  }
+
+  handleArchive(){
+    this.archive=!this.archive
+  }
+
+}
+

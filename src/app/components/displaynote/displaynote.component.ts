@@ -113,14 +113,14 @@ export class DisplaynoteComponent implements OnInit {
     })
     dialogRef.afterClosed().subscribe(result => {
       console.log(result)
-      this.updateList.emit({ action: "edit", data: { title: result.title, description: result.description, noteID: result.noteID, color: result.color, archive: result.archive } })
+      this.updateList.emit({ action: "edit", data: { title: result.title, description: result.description, noteID: result.noteID, color: result.color, archive: result.archive, } })
     });
   }
 
-  openSnackBar(message: string) {
+  openSnackBar(message: string,) {
     {
       this.snackBar.open(message, 'Close', {
-        duration: this.durationInSeconds * 1000, 
+        duration: 2000, 
       });
     }
   }
