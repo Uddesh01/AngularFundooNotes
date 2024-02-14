@@ -18,6 +18,7 @@ import { NoteService } from 'src/app/services/note.service';
 import { not } from '@angular/compiler/src/output/output_ast';
 import { MatDialog } from '@angular/material/dialog';
 import { EditComponent } from '../edit/edit.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -26,12 +27,14 @@ import { EditComponent } from '../edit/edit.component';
   styleUrls: ['./displaynote.component.scss']
 })
 export class DisplaynoteComponent implements OnInit {
-  @Output() updateList = new EventEmitter<{ action: string, data: { title: string, description: string, noteID: number, color: string , archive: boolean } }>();
-  @Input() note!: { title: string, description: string, noteID: number, color: string, archive:boolean };
+  @Output() updateList = new EventEmitter<{ action: string, data: { title: string, description: string, noteID: number, color: string, archive: boolean } }>();
+  @Input() note!: { title: string, description: string, noteID: number, color: string, archive: boolean };
   @Input() iconAction!: string;
   showColorPicker: boolean = false;
+  durationInSeconds!: number;
+  renderer: any;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, router: Router, private noteService: NoteService,public dialog: MatDialog) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, router: Router, private noteService: NoteService, public dialog: MatDialog, public snackBar: MatSnackBar) {
     iconRegistry.addSvgIconLiteral("reminder-icon", sanitizer.bypassSecurityTrustHtml(REMINDER_ICON))
     iconRegistry.addSvgIconLiteral("edit-icon", sanitizer.bypassSecurityTrustHtml(EDIT_ICON))
     iconRegistry.addSvgIconLiteral('archive-icon', sanitizer.bypassSecurityTrustHtml(ARCHIVE_ICON))
@@ -50,7 +53,7 @@ export class DisplaynoteComponent implements OnInit {
   handleIconsClick(action: string, noteID: number) {
     if (action === "archive" || action === "unarchive") {
       this.noteService.archive(noteID).subscribe(res => {
-        this.updateList.emit({ action: "archive", data: { title: this.note.title, description: this.note.description, noteID: this.note.noteID, color: this.note.color ,archive: this.note.archive} })
+        this.updateList.emit({ action: "archive", data: { title: this.note.title, description: this.note.description, noteID: this.note.noteID, color: this.note.color, archive: this.note.archive } })
       }, err => console.log(err))
     }
     else if (action === "trash") {
@@ -76,7 +79,7 @@ export class DisplaynoteComponent implements OnInit {
             description: this.note.description,
             noteID: this.note.noteID,
             color: this.note.color,
-            archive:this.note.archive
+            archive: this.note.archive
           }
         })
       }, err => console.log(err))
@@ -98,19 +101,28 @@ export class DisplaynoteComponent implements OnInit {
             description: this.note.description,
             noteID: this.note.noteID,
             color: color,
-            archive:this.note.archive
+            archive: this.note.archive
           }
         });
       },
         err => console.error(err))
   }
-  openEditNote(){
-      const dialogRef = this.dialog.open(EditComponent,{
-          data:{noteData:this.note}
-      })
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(result)
-        this.updateList.emit({ action: "edit", data: { title: result.title, description: result.description, noteID: result.noteID, color: result.color, archive: result.archive } })
+  openEditNote() {
+    const dialogRef = this.dialog.open(EditComponent, {
+      data: { noteData: this.note }
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      this.updateList.emit({ action: "edit", data: { title: result.title, description: result.description, noteID: result.noteID, color: result.color, archive: result.archive } })
+    });
+  }
+
+  openSnackBar(message: string) {
+    {
+      this.snackBar.open(message, 'Close', {
+        duration: this.durationInSeconds * 1000, 
       });
     }
+  }
 }
+
