@@ -20,8 +20,8 @@ const routes: Routes = [
     {path:"notes",component:NotesContainerComponent},
     {path:"archive",component:ArchiveContainerComponent},
     {path:"trash",component:TrashContainerComponent},
-    {path:"reminder",component:TrashContainerComponent},
-    {path:"edit",component:TrashContainerComponent},
+    // {path:"reminder",component:TrashContainerComponent},
+    // {path:"edit",component:TrashContainerComponent},
    ]},
   {path:"displaynote",component:DisplaynoteComponent},
   {path:"addnote",component:AddNoteComponent}

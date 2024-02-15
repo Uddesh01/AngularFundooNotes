@@ -29,6 +29,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditComponent } from './components/edit/edit.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SearchPipeComponent } from './components/search-pipe/search-pipe.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     TrashContainerComponent,
     ArchiveContainerComponent,
     AddNoteComponent,
-    EditComponent
+    EditComponent,
+    SearchPipeComponent
   ],
   imports: [
     BrowserModule,

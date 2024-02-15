@@ -25,6 +25,7 @@ import { Route, Router } from '@angular/router';
 export class FundooHeaderComponent implements OnInit {
   drawerState!: boolean;
   subscription!: Subscription;
+  searchState!: string;
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private data: DataServiceService, public router: Router) {
     iconRegistry.addSvgIconLiteral("Menu-icon", sanitizer.bypassSecurityTrustHtml(MENU_ICON))
@@ -44,12 +45,16 @@ export class FundooHeaderComponent implements OnInit {
     this.data.toggleDrawerState(!this.drawerState)
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
   handleAccClick() {
     localStorage.removeItem('authToken')
     this.router.navigate(["/login"])
+  }
+
+  handleSearchQuery() {
+    this.data.updateSearchQuery(this.searchState)
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

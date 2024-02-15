@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { elementAt } from 'rxjs';
+import { Subscription, elementAt } from 'rxjs';
+import { DataServiceService } from 'src/app/services/data-service.service';
 import { NoteService } from 'src/app/services/note.service';
 
 @Component({
@@ -13,25 +14,30 @@ import { NoteService } from 'src/app/services/note.service';
 export class NotesContainerComponent implements OnInit {
   notesList: { title: string, description: string, noteID: number, color: string, archive: boolean }[] = []
   iconAction: string = '';
-  constructor(private noteService: NoteService) { }
+  subscription!: Subscription;
+  searchState!: string;
+  constructor(private noteService: NoteService, public data: DataServiceService) { }
 
   ngOnInit(): void {
     this.noteService.getAllNotes().subscribe(
       res => {
-        this.notesList = res.data.filter((note: { archive: boolean, trash: boolean }) => !note.archive && !note.trash);  
+        this.notesList = res.data.filter((note: { archive: boolean, trash: boolean }) => !note.archive && !note.trash);
       },
       err => {
         console.error(err);
       }
     );
     this.iconAction = "note";
+
+    this.subscription = this.data.currSearchQuery.subscribe(state => this.searchState = state)
   }
 
-  updateNotesList($event: { action: string, data: { title: string, description: string, noteID: number, color: string , archive: boolean} }) {
+
+  updateNotesList($event: { action: string, data: { title: string, description: string, noteID: number, color: string, archive: boolean } }) {
     if ($event.action === "addNote") {
       if (!$event.data.archive) {
-        this.notesList = [$event.data, ...this.notesList];   
-      }      
+        this.notesList = [$event.data, ...this.notesList];
+      }
     }
     else if ($event.action === "archive") {
       this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)
@@ -40,21 +46,29 @@ export class NotesContainerComponent implements OnInit {
       this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)
     }
     else if ($event.action === "color" || $event.action === "edit") {
+
       this.notesList = this.notesList.map(note => {
         if (note.noteID === $event.data.noteID) {
           if ($event.action === "color") {
             note.color = $event.data.color;
-          } 
+          }
           else if ($event.action === "edit") {
             note.title = $event.data.title;
             note.description = $event.data.description;
-            note.color= $event.data.color;
-            note.archive=$event.data.archive;
+            note.color = $event.data.color;
+            note.archive = $event.data.archive;
           }
         }
         return note;
       });
-      this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)
+      if ($event.data.archive) {
+        this.notesList = this.notesList.filter(ele => ele.noteID != $event.data.noteID)
+      }
     }
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
+
 }

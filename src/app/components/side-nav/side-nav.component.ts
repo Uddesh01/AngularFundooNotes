@@ -39,20 +39,35 @@ export class SideNavComponent implements OnInit {
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
-  archiveNavigate() {
+  archiveNavigate(bool : boolean) {
     this.router.navigate(["/dashboard/archive"])
+    if(bool){
+    this.drawerState=!this.drawerState
+    }
   }
-  notesNavigate() {
+  notesNavigate(bool : boolean) {
     this.router.navigate(["/dashboard/notes"])
+    if(bool){
+      this.drawerState=!this.drawerState
+      }
   }
-  reminderNavigate() {
+  reminderNavigate(bool : boolean) {
     this.router.navigate(["/dashboard/reminder"])
+    if(bool){
+      this.drawerState=!this.drawerState
+      }
   }
-  editNavigate() {
+  editNavigate(bool : boolean) {
     this.router.navigate(["/dashboard/edit"])
+    if(bool){
+      this.drawerState=!this.drawerState
+      }
   }
-  trashNavigate() {
+  trashNavigate(bool : boolean) {
     this.router.navigate(["/dashboard/trash"])
+    if(bool){
+      this.drawerState=!this.drawerState
+      }
   }
 
 }

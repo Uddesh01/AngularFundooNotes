@@ -12,7 +12,7 @@
                 <mat-icon class="search-icon btn" svgIcon="Search-icon" aria-hidden="true"
                     aria-label="Search SVG icon"></mat-icon>
             </button>
-            <input type="text" class="search-input" placeholder="Search">
+            <input type="text" class="search-input" placeholder="Search" [(ngModel)]="searchState" (input)="handleSearchQuery()">
         </div>
         <div class="leftside-icon">
             <button class="btn refresh-btn button"  matTooltip="Refresh">

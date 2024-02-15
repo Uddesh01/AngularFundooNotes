@@ -12,8 +12,7 @@ export class ArchiveContainerComponent implements OnInit {
   notesList: { title: string; description: string; noteID: number; color:string, archive:boolean }[] = [];
   @Output() updateList = new EventEmitter<{ action: string, data: { title: string, description: string, noteID: number, color:string, archive: boolean } }>();
   iconAction: string = '';
-  constructor(private noteService: NoteService) {
-   }
+  constructor(private noteService: NoteService) {}
 
   ngOnInit(): void {
     this.noteService.getAllNotes().subscribe(
@@ -24,7 +23,7 @@ export class ArchiveContainerComponent implements OnInit {
         console.error(err);
       }
     );
-    this.iconAction = "archive";
+    this.iconAction = "unarchive";
   } 
 
   updateNotesList($event: { action: string, data: { title: string, description: string, noteID: number , color:string , archive: boolean} }): void {
