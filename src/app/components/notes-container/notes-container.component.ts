@@ -15,7 +15,7 @@ export class NotesContainerComponent implements OnInit {
   notesList: { title: string, description: string, noteID: number, color: string, archive: boolean }[] = []
   iconAction: string = '';
   subscription!: Subscription;
-  searchState!: string;
+  searchString!: string;
   constructor(private noteService: NoteService, public data: DataServiceService) { }
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class NotesContainerComponent implements OnInit {
     );
     this.iconAction = "note";
 
-    this.subscription = this.data.currSearchQuery.subscribe(state => this.searchState = state)
+    this.subscription = this.data.currSearchQuery.subscribe(state => this.searchString = state)
   }
 
 

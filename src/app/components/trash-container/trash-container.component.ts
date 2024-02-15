@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { DataServiceService } from 'src/app/services/data-service.service';
 import { NoteService } from 'src/app/services/note.service';
 
 @Component({
@@ -13,7 +15,9 @@ export class TrashContainerComponent implements OnInit {
   iconAction: string = '';
   notesList: { title: string; description: string; noteID: number , color:string, archive: boolean}[] = [];
   hiddenDeleteButton:boolean=true;
-  constructor(private noteService: NoteService) { }
+  searchString!:string
+  subscription!:Subscription
+  constructor(private noteService: NoteService,private data:DataServiceService) { }
 
   ngOnInit(): void {
     this.noteService.getAllNotes().subscribe(
@@ -24,6 +28,7 @@ export class TrashContainerComponent implements OnInit {
         console.log(err);
      });
      this.iconAction = "trash";
+     this.subscription = this.data.currSearchQuery.subscribe(state => this.searchString = state)
   }
 
   updateNotesList($event:{action:string,data:{title:string,description:string,noteID:number,color:string, archive: boolean}}){

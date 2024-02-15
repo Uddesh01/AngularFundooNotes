@@ -1,7 +1,7 @@
 <div class="initial">
     <app-add-note (updateList)="updateNotesList($event)"></app-add-note>
     <div class="container">
-        <div *ngFor="let note of notesList | search: searchState">
+        <div *ngFor="let note of notesList | search: searchString">
             <app-display-note [iconAction]="iconAction"  [note]="note" (updateList)="updateNotesList($event)"></app-display-note>
         </div>
     </div>
