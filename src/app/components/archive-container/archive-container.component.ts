@@ -48,6 +48,16 @@ export class ArchiveContainerComponent implements OnInit {
         updatedNote.description=$event.data.description
       }
     }
+    else if ($event.action==="trash"){
+      this.noteService.getAllNotes().subscribe(
+        res => {
+          this.notesList = res.data.filter((note: { archive: boolean }) => note.archive);
+        },
+        err => {
+          console.error(err);
+        }
+      );
+    }
   }
 
   ngOnDestroy(): void {

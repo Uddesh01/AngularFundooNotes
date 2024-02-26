@@ -3,6 +3,7 @@
     display: flex;
     height: calc(100vh - 80px);
     margin-top: 10px;
+   // position: fixed;
 }
 
 .icon-lable{
@@ -57,6 +58,7 @@ mat-drawer-content {
 .icons {
     display: flex;
     flex-direction: column;
+    position: fixed;
 }
 
 .btn {

@@ -58,15 +58,19 @@ export class DisplaynoteComponent implements OnInit {
     }
     else if (action === "trash") {
       this.noteService.trash(noteID).subscribe(res => {
+        if(this.note.archive===true){
+          this.note.archive=false
+        }
         this.updateList.emit({
           action: "trash", data: {
             title: this.note.title,
             description: this.note.description,
             noteID: this.note.noteID,
             color: this.note.color,
-            archive: this.note.archive
+            archive: this.note.archive  
           }
         })
+        console.log(this.note.archive)
       }, err => console.log(err))
     }
 

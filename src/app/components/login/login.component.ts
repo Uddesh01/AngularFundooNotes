@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['uddesh@gmail.com', [Validators.required, Validators.email]],
-      password: ['Uddesh@123', [Validators.required, Validators.minLength(6)]]
+      email: ['sarthak@gmail.com', [Validators.required, Validators.email]],
+      password: ['Sarthak@123', [Validators.required, Validators.minLength(6)]]
     })
   }
   get f() { return this.loginForm.controls; }
@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
       "userEmail": email,
       "userPassword": password
     }).subscribe(res => {
+      console.log(res.data)
       localStorage.setItem("authToken",res.data)
       this.router.navigate(["/dashboard/notes"])
     }, err => console.log(err))

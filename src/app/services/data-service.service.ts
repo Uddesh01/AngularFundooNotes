@@ -15,7 +15,7 @@ export class DataServiceService {
 
   toggleDrawerState(state: boolean) {
     this.drawerState.next(state)
-  }
+  } 
 
   updateSearchQuery(searchQuery: string){
    this.searchQuery.next(searchQuery)
