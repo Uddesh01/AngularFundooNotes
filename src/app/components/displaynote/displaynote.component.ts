@@ -121,7 +121,7 @@ export class DisplaynoteComponent implements OnInit {
     });
   }
 
-  openSnackBar(message: string,) {
+  openSnackBar(message: string) {
     {
       this.snackBar.open(message, 'Close', {
         duration: 2000, 
@@ -129,4 +129,3 @@ export class DisplaynoteComponent implements OnInit {
     }
   }
 }
-

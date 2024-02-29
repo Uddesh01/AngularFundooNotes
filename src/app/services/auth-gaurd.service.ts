@@ -14,8 +14,7 @@ export class AuthGaurdService implements CanActivate {
   ): boolean | UrlTree {
     if(localStorage.getItem('authToken')) {
       return true;
-    } else {
-      
+    } else {    
       return this.router.createUrlTree(['/login']);
     }
   }

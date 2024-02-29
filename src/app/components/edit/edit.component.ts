@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Interface } from 'readline';
 import { NoteService } from 'src/app/services/note.service';
 
 interface noteData {
@@ -40,11 +39,8 @@ export class EditComponent implements OnInit {
 
   handleEditNote() {
     this.noteService.editNote(this.noteID, {
-      title: this.title,
-      description: this.description,
-      color: this.color,
-      archive: this.archive
-
+      titel: this.title,
+      discription: this.description
     }).subscribe(
       res => {
         this.dialogRef.close({
@@ -74,6 +70,4 @@ export class EditComponent implements OnInit {
   handleArchive(){
     this.archive=!this.archive
   }
-
 }
-

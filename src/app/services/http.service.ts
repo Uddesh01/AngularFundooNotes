@@ -87,7 +87,6 @@ export class HttpService {
       'Accept': "application/json",
       Authorization: `Bearer ${localStorage.getItem('authToken')}` || ""
     });
-  
     return this.httpClient.put(this.baseUrl + endpoint, data, {
       headers: authHeader
     });
